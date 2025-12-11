@@ -101,4 +101,26 @@ A visualization of the "Trapping Rain Water" problem using HTML, CSS, and Vanill
 ### Run
 1.  Navigate to `Algorithm_Water_Tank/`.
 2.  Open **`index.html`** in any web browser.
-3.  Enter comma-separated heights (default: `0,4,0,0,0,6,0,6,4,0`) and click **Calculate**.
+
+---
+
+## 📈 Project Report & Design Decisions
+
+### 1. Gen AI - RAG System
+-   **Methodology:**
+    -   **Ingestion:** Text files are loaded and split into chunks (lines) to maintain granularity.
+    -   **Embeddings:** Used `all-MiniLM-L6-v2` (384d) for its speed and adequate performance for semantic search.
+    -   **Vector DB:** `FAISS` was chosen for efficient, local, in-memory similarity search (L2 distance).
+    -   **Summarization:** Switched to **Google Gemini 2.5 Flash** for highly efficient, low-latency summarization of retrieved contexts.
+-   **Challenges:**
+    -   *Challenge:* Handling API keys securely in a public repo. *Solution:* Used environment variables and `st.text_input` (password type) in the UI.
+    -   *Challenge:* Latency. *Solution:* Used "Flash" model variant and cached the `RAGSystem` resource in Streamlit (`@st.cache_resource`).
+
+### 2. AI Engineer - CIFAR-10
+-   **Preprocessing:** Standard normalization `(0.5, 0.5, 0.5)` helps the CNN converge faster. Random Horizontal Flip and Crop added for robustness (Data Augmentation).
+-   **Architecture:** Built a custom CNN with **Residual Blocks** (Option A). The skip connections in ResNet help prevent vanishing gradients, allowing deeper networks to train effectively.
+-   **Evaluation:** The model is evaluated on the 10,000-image test set. A confusion matrix approach (visualizing misclassified images) helps identify where the model struggles (e.g., Cat vs Dog).
+
+---
+**Repository Link:** [https://github.com/AswathVishahan/assignment-everquint](https://github.com/AswathVishahan/assignment-everquint)
+
