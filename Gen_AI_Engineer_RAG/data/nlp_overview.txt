@@ -1,0 +1,9 @@
+Natural Language Processing (NLP) is a subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language.
+Early NLP systems were rule-based, relying on handwritten grammar rules.
+Statistical NLP emerged in the 1990s, using machine learning to analyze large corpora of text.
+Modern NLP is dominated by deep learning, specifically Transformers like BERT and GPT.
+Common NLP tasks include:
+- Sentiment Analysis: Determining the emotional tone of text.
+- Machine Translation: Translating text from one language to another.
+- Named Entity Recognition (NER): Identifying names of people, places, and organizations.
+- Question Answering: Automatically answering questions based on context.

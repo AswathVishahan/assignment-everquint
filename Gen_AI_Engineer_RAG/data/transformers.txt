@@ -1,0 +1,7 @@
+The Transformer is a deep learning architecture, introduced in the 2017 paper "Attention Is All You Need". 
+It has since become the model of choice for NLP problems, replacing RNNs and LSTMs.
+The key innovation is the "Self-Attention" mechanism, which allows the model to weigh the importance of different words in a sentence regardless of their distance from each other.
+Transformers allow for parallelization, significantly speeding up training.
+BERT and GPT are the most famous models based on the Transformer architecture.
+BERT (Bidirectional Encoder Representations from Transformers) is designed to pre-train deep bidirectional representations from unlabeled text.
+GPT (Generative Pre-trained Transformer) is an autoregressive model that outputs text token by token.

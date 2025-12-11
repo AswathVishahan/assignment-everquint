@@ -1,0 +1,7 @@
+A vector database is a type of database that indexes and stores vector embeddings for fast retrieval and similarity search.
+Embeddings are numerical representations of data (like text, images, or audio) that capture semantic meaning.
+In an embedding space, similar concepts are located close to each other.
+Common vector databases include Pinecone, Milvus, Qdrant, and Chroma.
+FAISS (Facebook AI Similarity Search) is a library that allows developers to quickly search for embeddings that are similar to each other.
+It is widely used in RAG systems to find the most relevant chunks of text for a given query.
+Cosine similarity is a common metric used to measure the distance between two vectors.

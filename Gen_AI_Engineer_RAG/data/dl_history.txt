@@ -1,0 +1,5 @@
+Deep learning dates back to the 1940s with the invention of the perceptron by Warren McCulloch and Walter Pitts.
+However, it wasn't until the 2000s and 2010s that it became practical due to the availability of large datasets (Big Data) and powerful GPUs.
+In 2012, AlexNet, a Convolutional Neural Network (CNN), won the ImageNet Large Scale Visual Recognition Challenge by a significant margin, sparking the modern deep learning boom.
+Key figures in the field include Geoffrey Hinton, Yann LeCun, and Yoshua Bengio, often referred to as the "Godfathers of AI".
+Deep learning models are composed of multiple layers of neurons that learn hierarchical representations of data.

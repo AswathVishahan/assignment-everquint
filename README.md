@@ -1,0 +1,104 @@
+# Ever Quint Interview Assignments
+
+This repository contains the completed solutions for the Ever Quint interview assignments (Gen AI Engineer). 
+
+**Candidate:** [Your Name/Aswath]  
+**Position:** Gen AI Engineer
+
+## 📂 Project Structure
+
+This project is organized into four main directories, corresponding to the assigned tasks:
+
+1.  **`AI_Engineer_CIFAR10/`** (Mandatory) - Image Classification using PyTorch.
+2.  **`Algorithm_Max_Profit/`** (Mandatory) - Dynamic Programming solution for maximizing earnings.
+3.  **`Algorithm_Water_Tank/`** (Mandatory) - Web-based visualization of the Water Tank problem.
+4.  **`Gen_AI_Engineer_RAG/`** (Bonus) - RAG System with Gemini 2.5 Flash and Streamlit UI.
+
+---
+
+## 🛠️ Prerequisites
+
+-   Python 3.8+
+-   Pip (Python Package Manager)
+-   A Web Browser
+
+---
+
+## 1️⃣ Gen AI Engineer - RAG (Bonus)
+
+A Retrieval-Augmented Generation (RAG) system that answers questions based on a local knowledge base.
+
+**Key Features:**
+-   **Model:** Google Gemini 2.5 Flash (via `google-generativeai`).
+-   **Embeddings:** `all-MiniLM-L6-v2` (SentenceTransformer).
+-   **Vector DB:** FAISS (Facebook AI Similarity Search).
+-   **Interface:** Streamlit Web App (Bonus Requirement).
+
+### Setup & Run
+1.  Navigate to the directory:
+    ```bash
+    cd Gen_AI_Engineer_RAG
+    ```
+2.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Run the Web Interface:**
+    ```bash
+    streamlit run app.py
+    ```
+    *(Or run `Run_RAG_App.bat` from the root directory)*
+4.  **Run in Terminal (CLI Mode):**
+    ```bash
+    python rag_core.py
+    ```
+
+> **Note:** You will need a **Google Gemini API Key** to enable the summarization feature (Input it in the UI or CLI prompt).
+
+---
+
+## 2️⃣ AI Engineer - CIFAR-10 (Mandatory)
+
+A Convolutional Neural Network (CNN) built from scratch to classify CIFAR-10 images. Includes a **Residual Block** improvement (Option A).
+
+### Setup & Run
+1.  Navigate to the directory:
+    ```bash
+    cd AI_Engineer_CIFAR10
+    ```
+2.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Train the Model:**
+    ```bash
+    python train.py
+    ```
+    *   Downloads dataset automatically.
+    *   Trains for 1 Epoch (for demo purposes) on CPU/GPU.
+    *   Saves model to `cifar_net.pth`.
+    *   Generates `training_loss.png` and `misclassified.png`.
+
+---
+
+## 3️⃣ Algorithm - Max Profit (Mandatory)
+
+A solution to maximize property earnings based on build time and operational duration.
+
+### Run
+1.  Run the Python script:
+    ```bash
+    python Algorithm_Max_Profit/solution.py
+    ```
+2.  **Output:** Prints the optimal building mix and total earnings for the test cases (Time 7, 8, 13).
+
+---
+
+## 4️⃣ Algorithm - Water Tank (Mandatory)
+
+A visualization of the "Trapping Rain Water" problem using HTML, CSS, and Vanilla JavaScript.
+
+### Run
+1.  Navigate to `Algorithm_Water_Tank/`.
+2.  Open **`index.html`** in any web browser.
+3.  Enter comma-separated heights (default: `0,4,0,0,0,6,0,6,4,0`) and click **Calculate**.

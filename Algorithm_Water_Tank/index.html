@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Tank Problem</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #2d2d2d;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        .controls {
+            margin-bottom: 2rem;
+        }
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #3d3d3d;
+            color: white;
+            width: 300px;
+            font-family: monospace;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007acc;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #005f9e;
+        }
+        .visualization-area {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 400px;
+            border-bottom: 2px solid #555;
+            padding: 0 20px;
+            gap: 2px;
+            overflow-x: auto;
+        }
+        .column {
+            width: 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .block {
+            width: 100%;
+            height: 20px; /* 1 unit height */
+            background-color: #fce94f; /* Brick color */
+            border: 1px solid #c4a000;
+            box-sizing: border-box;
+        }
+        .water {
+            width: 100%;
+            height: 20px;
+            background-color: #3498db; /* Water color */
+            border: 1px solid #2980b9;
+            box-sizing: border-box;
+            opacity: 0.8;
+        }
+        .result-text {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            color: #3498db;
+        }
+        .label {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Water Tank Problem</h1>
+    
+    <div class="controls">
+        <p>Input array (comma separated):</p>
+        <input type="text" id="inputArray" value="0,4,0,0,0,6,0,6,4,0">
+        <button onclick="calculateAndRender()">Calculate</button>
+    </div>
+
+    <div class="visualization-area" id="visualizer">
+        <!-- Bars will be generated here -->
+    </div>
+
+    <div class="result-text" id="resultOutput">
+        Total Water: 0 Units
+    </div>
+</div>
+
+<script>
+    function calculateWater(heights) {
+        let n = heights.length;
+        if (n === 0) return { total: 0, waterLevels: [] };
+
+        let leftMax = new Array(n).fill(0);
+        let rightMax = new Array(n).fill(0);
+        
+        leftMax[0] = heights[0];
+        for (let i = 1; i < n; i++) {
+            leftMax[i] = Math.max(leftMax[i - 1], heights[i]);
+        }
+        
+        rightMax[n - 1] = heights[n - 1];
+        for (let i = n - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(rightMax[i + 1], heights[i]);
+        }
+        
+        let totalWater = 0;
+        let waterLevels = new Array(n).fill(0);
+        
+        for (let i = 0; i < n; i++) {
+            let waterLevel = Math.min(leftMax[i], rightMax[i]) - heights[i];
+            if (waterLevel > 0) {
+                totalWater += waterLevel;
+                waterLevels[i] = waterLevel;
+            }
+        }
+        
+        return { total: totalWater, waterLevels: waterLevels };
+    }
+
+    function calculateAndRender() {
+        const input = document.getElementById('inputArray').value;
+        const heights = input.split(',').map(num => parseInt(num.trim()));
+        
+        if (heights.some(isNaN)) {
+            alert("Invalid input! Please enter numbers separated by commas.");
+            return;
+        }
+
+        const { total, waterLevels } = calculateWater(heights);
+        
+        // Render
+        const container = document.getElementById('visualizer');
+        container.innerHTML = '';
+        
+        // Find max height for scaling if needed, but we use fixed px blocks
+        
+        heights.forEach((h, index) => {
+            const w = waterLevels[index];
+            const col = document.createElement('div');
+            col.className = 'column';
+            
+            // We stack blocks and water
+            // Since flex-direction is column-reverse, first appended is at bottom
+            
+            // 1. Blocks (Wall)
+            for(let i=0; i<h; i++) {
+                const block = document.createElement('div');
+                block.className = 'block';
+                col.appendChild(block);
+            }
+            
+            // 2. Water
+            for(let i=0; i<w; i++) {
+                const water = document.createElement('div');
+                water.className = 'water';
+                col.appendChild(water);
+            }
+            
+            // Label
+            // We can't put label inside column efficiently with reverse flex for stacking blocks
+            // So we skip label for now or use title
+            col.title = `Index: ${index}, H: ${h}, Water: ${w}`;
+
+            container.appendChild(col);
+        });
+
+        document.getElementById('resultOutput').innerText = `Total Water: ${total} Units`;
+    }
+
+    // Initial render
+    calculateAndRender();
+</script>
+
+</body>
+</html>
