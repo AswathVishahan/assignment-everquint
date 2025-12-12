@@ -125,6 +125,9 @@ python Gen_AI_Engineer_Reasoning/evaluate.py
 **Run Interactive Agent:**
 ```bash
 python Gen_AI_Engineer_Reasoning/agent.py
+
+
+# Use $env:GOOGLE_API_KEY="***********"; python Gen_AI_Engineer_Reasoning/evaluate.py (in the terminal)
 ```
 
 ---
