@@ -2,9 +2,6 @@
 
 This repository contains the completed solutions for the Ever Quint interview assignments (Gen AI Engineer). 
 
-**Candidate:** [Your Name/Aswath]  
-**Position:** Gen AI Engineer
-
 ## 📂 Project Structure
 
 This project is organized into four main directories, corresponding to the assigned tasks:
