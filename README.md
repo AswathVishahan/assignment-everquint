@@ -10,6 +10,7 @@ This project is organized into four main directories, corresponding to the assig
 2.  **`Algorithm_Max_Profit/`** (Mandatory) - Dynamic Programming solution for maximizing earnings.
 3.  **`Algorithm_Water_Tank/`** (Mandatory) - Web-based visualization of the Water Tank problem.
 4.  **`Gen_AI_Engineer_RAG/`** (Bonus) - RAG System with Gemini 2.5 Flash and Streamlit UI.
+5.  **`Gen_AI_Engineer_Reasoning/`** (Bonus) - Multistep Reasoning Agent (Planner-Executor-Verifier).
 
 ---
 
@@ -101,6 +102,33 @@ A visualization of the "Trapping Rain Water" problem using HTML, CSS, and Vanill
 
 ---
 
+## 5️⃣ Gen AI Engineer - Multistep Reasoning (Bonus)
+
+A Reasoning Agent that solves structured problems using a **Planner -> Executor -> Verifier** loop.
+
+**Key Features:**
+-   **Architecture:** Separates planning, math execution, and self-verification.
+-   **Self-Correction:** If the Verifier spots a mistake, the agent retries (up to 3 times) with feedback.
+-   **Mock Mode:** If `GOOGLE_API_KEY` is missing, it falls back to a structural mock (verifying the loop logic).
+
+**Setup:**
+```bash
+# Set your Google API Key (Required for live Gemini usage)
+set GOOGLE_API_KEY=your_key_here
+```
+
+**Run Evaluation:**
+```bash
+python Gen_AI_Engineer_Reasoning/evaluate.py
+```
+
+**Run Interactive Agent:**
+```bash
+python Gen_AI_Engineer_Reasoning/agent.py
+```
+
+---
+
 ## 📈 Project Report & Design Decisions
 
 ### 1. Gen AI - RAG System
@@ -117,6 +145,11 @@ A visualization of the "Trapping Rain Water" problem using HTML, CSS, and Vanill
 -   **Preprocessing:** Standard normalization `(0.5, 0.5, 0.5)` helps the CNN converge faster. Random Horizontal Flip and Crop added for robustness (Data Augmentation).
 -   **Architecture:** Built a custom CNN with **Residual Blocks** (Option A). The skip connections in ResNet help prevent vanishing gradients, allowing deeper networks to train effectively.
 -   **Evaluation:** The model is evaluated on the 10,000-image test set. A confusion matrix approach (visualizing misclassified images) helps identify where the model struggles (e.g., Cat vs Dog).
+
+### 3. Gen AI - Multistep Reasoning
+-   **Architecture:** Implemented the "Reasoning Agent" pattern (Planner/Executor/Verifier) to decouple logic steps.
+-   **Verification:** The key innovation is the retry loop—Gemini is asked to "verify" its own output. If verification fails (JSON status), it feeds the feedback back into the prompt context for the next attempt.
+-   **Robustness:** Added a **Mock Mode** to ensure the agent's structural logic (state transitions, JSON parsing) can be verified even without an active API key in the generic CI/CD environment.
 
 ---
 **Repository Link:** [https://github.com/AswathVishahan/assignment-everquint](https://github.com/AswathVishahan/assignment-everquint)

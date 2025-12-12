@@ -38,3 +38,4 @@ Gen_AI_Engineer_RAG/data/.DS_Store
 
 # Streamlit
 .streamlit/
+test_results.json
